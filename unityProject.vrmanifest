@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.testtrack.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "D:\\TestTrack\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "TestTrack [Testing]"
+        }
+      }
+    }
+  ]
+}
