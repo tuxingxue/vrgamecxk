@@ -34,9 +34,22 @@ public class WheelDrive : MonoBehaviour
     private WheelCollider[] m_Wheels;
 
     public Transform Camera;
+    public GameObject Camerarig;
+
+    public SteamVR_Input_Sources handType;
+    public SteamVR_Action_Boolean teleportAction; // 2
+    public SteamVR_Action_Boolean grabAction; // 3
+    public bool GetGrab() // 2
+    {
+        return grabAction.GetState(handType);
+    }
+    public bool GetTeleportDown() // 1
+    {
+        return teleportAction.GetState(handType);
+    }
 
     // Find all the WheelColliders down in the hierarchy.
-	void Start()
+    void Start()
 	{
 		m_Wheels = GetComponentsInChildren<WheelCollider>();
 
@@ -59,11 +72,21 @@ public class WheelDrive : MonoBehaviour
     void Update()
 	{
 		m_Wheels[0].ConfigureVehicleSubsteps(criticalSpeed, stepsBelow, stepsAbove);
-        float angle, torque; 
+        float angle, torque;
+        angle = 0;
+        torque = 0;
+        int status = Camerarig.GetComponent<reviseposition>().humanstatus;
+        if(status==1)
+        {
+            angle = maxAngle * Input.GetAxis("Horizontal")-Camera.localEulerAngles.z;
+            torque = maxTorque * Input.GetAxis("Vertical");
+            if(GetTeleportDown())
+            {
+                torque += maxTorque;
+            }
+        }
         
-        angle = maxAngle * Input.GetAxis("Horizontal")-Camera.localEulerAngles.z;
-
-        torque = maxTorque * Input.GetAxis("Vertical");
+        
 		
 
 		float handBrake = Input.GetKey(KeyCode.X) ? brakeTorque : 0;

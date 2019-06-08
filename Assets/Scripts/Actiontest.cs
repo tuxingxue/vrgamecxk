@@ -32,6 +32,7 @@ public class Actiontest : MonoBehaviour
     {
         if (GetTeleportDown())
         {
+
             print("Teleport " + handType);
         }
 

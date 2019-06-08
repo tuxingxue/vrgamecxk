@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class fix_xz : MonoBehaviour
 {
+    public Transform can;
+    public GameObject Camerarig;
     float z;
     // Start is called before the first frame update
     void Start()
@@ -14,8 +16,19 @@ public class fix_xz : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 v = transform.eulerAngles;
-        v.z = transform.Find("Camera").localEulerAngles.z;
-        transform.eulerAngles = v;
+        int status = Camerarig.GetComponent<reviseposition>().humanstatus;
+        if(status==1)
+        {
+            Vector3 v = transform.eulerAngles;
+            z = can.localEulerAngles.z;
+            v.z = z;
+            transform.eulerAngles = v;
+        }
+        else
+        {
+            Vector3 v = transform.eulerAngles;
+            v.z = z;
+            transform.eulerAngles = v;
+        }
     }
 }
