@@ -26,9 +26,9 @@ public class fix_xz : MonoBehaviour
         }
         else
         {
-            Vector3 v = transform.eulerAngles;
+           /* Vector3 v = transform.eulerAngles;
             v.z = z;
-            transform.eulerAngles = v;
+            transform.eulerAngles = v;*/
         }
     }
 }

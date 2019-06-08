@@ -13,6 +13,8 @@ public class reviseposition : MonoBehaviour
     private Transform right;
     private GameObject ggleft;
     private GameObject ggright;
+    private GameObject motorbike;
+    private Rigidbody m_Rigidbody;
     public int humanstatus;
     public float gettomotor;
     public SteamVR_Input_Sources handType; // 1
@@ -36,6 +38,8 @@ public class reviseposition : MonoBehaviour
         right = transform.Find("righthand");
         ggleft = GameObject.Find("glove-left");
         ggright = GameObject.Find("glove-right");
+        m_Rigidbody = GameObject.Find("Truck").GetComponent<Rigidbody>();
+        motorbike = GameObject.Find("Truck");
         ggleft.SetActive(false);
         ggright.SetActive(false);
     }
@@ -55,6 +59,7 @@ public class reviseposition : MonoBehaviour
                 {
                     left.Translate(new Vector3(0, 100, 0), Space.World);
                     right.Translate(new Vector3(0, 100, 0), Space.World);
+                    m_Rigidbody.constraints = 0;
                     ggleft.SetActive(false);
                     ggright.SetActive(false);
                     print("Get off the motor");
@@ -64,6 +69,8 @@ public class reviseposition : MonoBehaviour
                 {
                     left.Translate(new Vector3(0, -100, 0), Space.World);
                     right.Translate(new Vector3(0, -100, 0), Space.World);
+                    StartCoroutine(changedamp());
+                    m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationZ;
                     ggleft.SetActive(true);
                     ggright.SetActive(true);
                     print("Get on the motor");
@@ -88,5 +95,13 @@ public class reviseposition : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         changebreak = 0;
+    }
+
+    private IEnumerator changedamp()
+    {
+        float tmpd = motorbike.GetComponent<EasySuspension>().getdamping();
+        motorbike.GetComponent<EasySuspension>().setdamping(3f);
+        yield return new WaitForSeconds(0.2f);
+        motorbike.GetComponent<EasySuspension>().setdamping(tmpd);
     }
 }

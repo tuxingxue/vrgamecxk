@@ -49,6 +49,14 @@ public class EasySuspension : MonoBehaviour
 		}
 	}
 
+    public void setdamping(float d)
+    {
+        dampingRatio = d;
+    }
+    public float getdamping()
+    {
+        return dampingRatio;
+    }
     // Uncomment this to observe how parameters change.
     /*
     void OnGUI()

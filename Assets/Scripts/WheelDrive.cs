@@ -26,7 +26,7 @@ public class WheelDrive : MonoBehaviour
 	[Tooltip("Simulation sub-steps when the speed is above critical.")]
 	public int stepsBelow = 5;
 	[Tooltip("Simulation sub-steps when the speed is below critical.")]
-	public int stepsAbove = 1;
+	public int stepsAbove = 3;
 
 	[Tooltip("The vehicle's drive type: rear-wheels drive, front-wheels drive or all-wheels drive.")]
 	public DriveType driveType;
@@ -38,22 +38,26 @@ public class WheelDrive : MonoBehaviour
 
     public SteamVR_Input_Sources handType;
     public SteamVR_Action_Boolean teleportAction; // 2
+    public SteamVR_Action_Boolean triggerAction; // 2
     public SteamVR_Action_Boolean grabAction; // 3
     public bool GetGrab() // 2
     {
         return grabAction.GetState(handType);
     }
-    public bool GetTeleportDown() // 1
+    public bool GetTeleport() // 1
     {
         return teleportAction.GetState(handType);
     }
-
+    public bool GetTrigger() // 1
+    {
+        return triggerAction.GetState(handType);
+    }
     // Find all the WheelColliders down in the hierarchy.
     void Start()
 	{
 		m_Wheels = GetComponentsInChildren<WheelCollider>();
 
-		for (int i = 0; i < m_Wheels.Length; ++i) 
+		/*for (int i = 0; i < m_Wheels.Length; ++i) 
 		{
 			var wheel = m_Wheels [i];
 
@@ -63,7 +67,7 @@ public class WheelDrive : MonoBehaviour
 				var ws = Instantiate (wheelShape);
 				ws.transform.parent = wheel.transform;
 			}
-		}
+		}*/
 	}
     
     // This is a really simple approach to updating wheels.
@@ -72,46 +76,51 @@ public class WheelDrive : MonoBehaviour
     void Update()
 	{
 		m_Wheels[0].ConfigureVehicleSubsteps(criticalSpeed, stepsBelow, stepsAbove);
-        float angle, torque;
+        float angle, tmpangle, torque, handBrake;
         angle = 0;
         torque = 0;
+        handBrake = 0;
         int status = Camerarig.GetComponent<reviseposition>().humanstatus;
         if(status==1)
         {
-            angle = maxAngle * Input.GetAxis("Horizontal")-Camera.localEulerAngles.z;
+            tmpangle = Camera.localEulerAngles.z;
+            if(tmpangle<180)
+            {
+                angle = -maxAngle*tmpangle;
+            }
+            else
+            {
+                angle = maxAngle * (360-tmpangle);
+            }
             torque = maxTorque * Input.GetAxis("Vertical");
-            if(GetTeleportDown())
+            if(GetTeleport())
             {
                 torque += maxTorque;
             }
+            handBrake = GetTrigger() ? brakeTorque : 0;
         }
-        
-        
-		
 
-		float handBrake = Input.GetKey(KeyCode.X) ? brakeTorque : 0;
+         
 
 		foreach (WheelCollider wheel in m_Wheels)
 		{
 			// A simple car where front wheels steer while rear ones drive.
 			if (wheel.transform.localPosition.z > 0)
-				wheel.steerAngle = angle;
-
+            {
+                wheel.steerAngle = angle;
+            }
 			if (wheel.transform.localPosition.z < 0)
 			{
 				wheel.brakeTorque = handBrake;
 			}
-
 			if (wheel.transform.localPosition.z < 0 && driveType != DriveType.FrontWheelDrive)
 			{
 				wheel.motorTorque = torque;
 			}
-
 			if (wheel.transform.localPosition.z >= 0 && driveType != DriveType.RearWheelDrive)
 			{
 				wheel.motorTorque = torque;
 			}
-
 			// Update visual wheels if any.
 			if (wheelShape) 
 			{
