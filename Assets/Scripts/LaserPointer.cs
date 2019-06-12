@@ -9,42 +9,76 @@ public class LaserPointer : MonoBehaviour
     public SteamVR_Behaviour_Pose controllerPose;
     public SteamVR_Action_Boolean teleportAction;
 
-    public GameObject Camerarig;
-    public GameObject laserPrefab; // 1
-    private GameObject laser; // 2
-    private Transform laserTransform; // 3
-    private Vector3 hitPoint; // 4
+    public GameObject Camera;
+    public GameObject laser_yellow;
+    public float maximummove;
+    private GameObject reticle;
+    private GameObject laser1;
+    private Transform lasertrans1;
+    private Vector3 hitPoint; 
+
+    public LayerMask teleportmask;
+    public GameObject reticle_pre;
+    private Transform reticletrans;
+    public Transform camerarigtrans;
+    public Transform cameratrans;
+    public Vector3 reticle_offset;
+    private bool whetherTeleport;
     // Start is called before the first frame update
     void Start()
     {
-        laser = Instantiate(laserPrefab);
-        laserTransform = laser.transform;
+        laser1 = Instantiate(laser_yellow);
+        lasertrans1 = laser1.transform;
+        reticle = Instantiate(reticle_pre);
+        reticletrans = reticle.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        int status = Camerarig.GetComponent<reviseposition>().humanstatus;
+        int status = Camera.GetComponent<reviseposition>().humanstatus;
         if (teleportAction.GetState(handType)&&status==0)
         {
             RaycastHit hit;
-            if (Physics.Raycast(controllerPose.transform.position, transform.forward, out hit, 100))
+            if (Physics.Raycast(controllerPose.transform.position, transform.forward, out hit, maximummove, teleportmask))
             {
                 hitPoint = hit.point;
-                ShowLaser(hit);
+                reticle.SetActive(true);
+                reticletrans.position = hitPoint + reticle_offset;
+                whetherTeleport = true;
+                EmitLaser(hit);
+            }
+            else
+            {
+                laser1.SetActive(false);
+                reticle.SetActive(false);
             }
         }
-        else // 3
+        else 
         {
-            laser.SetActive(false);
+            laser1.SetActive(false);
+            reticle.SetActive(false);
+        }
+        if (teleportAction.GetStateUp(handType) && whetherTeleport)
+        {
+            Teleport();
         }
     }
 
-    private void ShowLaser(RaycastHit hit)
+    private void EmitLaser(RaycastHit hit)
     {
-        laser.SetActive(true);
-        laserTransform.position = Vector3.Lerp(controllerPose.transform.position, hitPoint, .5f);
-        laserTransform.LookAt(hitPoint);
-        laserTransform.localScale = new Vector3(laserTransform.localScale.x,laserTransform.localScale.y,hit.distance);
+        laser1.SetActive(true);
+        lasertrans1.position = Vector3.Lerp(controllerPose.transform.position, hitPoint, .5f);
+        lasertrans1.LookAt(hitPoint);
+        lasertrans1.localScale = new Vector3(lasertrans1.localScale.x, lasertrans1.localScale.y,hit.distance);
+    }
+
+    private void Teleport()
+    {
+        whetherTeleport = false;
+        reticle.SetActive(false);
+        Vector3 difference = camerarigtrans.position - cameratrans.position;
+        difference.y = 0;
+        camerarigtrans.position = hitPoint + difference;
     }
 }

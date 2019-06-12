@@ -16,7 +16,7 @@ public class fix_xz : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int status = Camerarig.GetComponent<reviseposition>().humanstatus;
+        int status = Camerarig.GetComponent<set_position>().humanstatus;
         if(status==1)
         {
             Vector3 v = transform.eulerAngles;

@@ -20,7 +20,6 @@ public class WheelDrive : MonoBehaviour
 	public float brakeTorque = 30000f;
 	[Tooltip("If you need the visual wheels to be attached automatically, drag the wheel shape here.")]
 	public GameObject wheelShape;
-
 	[Tooltip("The vehicle's speed when the physics engine can use different amount of sub-steps (in m/s).")]
 	public float criticalSpeed = 5f;
 	[Tooltip("Simulation sub-steps when the speed is above critical.")]
@@ -32,10 +31,8 @@ public class WheelDrive : MonoBehaviour
 	public DriveType driveType;
 
     private WheelCollider[] m_Wheels;
-
     public Transform Camera;
     public GameObject Camerarig;
-
     public SteamVR_Input_Sources handType;
     public SteamVR_Action_Boolean teleportAction; // 2
     public SteamVR_Action_Boolean triggerAction; // 2
@@ -69,7 +66,6 @@ public class WheelDrive : MonoBehaviour
 			}
 		}*/
 	}
-    
     // This is a really simple approach to updating wheels.
     // We simulate a rear wheel drive car and assume that the car is perfectly symmetric at local zero.
     // This helps us to figure our which wheels are front ones and which are rear.
@@ -80,7 +76,7 @@ public class WheelDrive : MonoBehaviour
         angle = 0;
         torque = 0;
         handBrake = 0;
-        int status = Camerarig.GetComponent<reviseposition>().humanstatus;
+        int status = Camerarig.GetComponent<set_position>().humanstatus;
         if(status==1)
         {
             tmpangle = Camera.localEulerAngles.z;
@@ -90,7 +86,7 @@ public class WheelDrive : MonoBehaviour
             }
             else
             {
-                angle = maxAngle * (360-tmpangle);
+                angle = maxAngle*(360-tmpangle);
             }
             torque = maxTorque * Input.GetAxis("Vertical");
             if(GetTeleport())
@@ -99,9 +95,6 @@ public class WheelDrive : MonoBehaviour
             }
             handBrake = GetTrigger() ? brakeTorque : 0;
         }
-
-         
-
 		foreach (WheelCollider wheel in m_Wheels)
 		{
 			// A simple car where front wheels steer while rear ones drive.
