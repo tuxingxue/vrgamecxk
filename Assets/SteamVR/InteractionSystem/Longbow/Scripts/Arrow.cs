@@ -113,6 +113,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		void OnCollisionEnter( Collision collision )
 		{
+            print(collision.collider);
 			if ( inFlight )
 			{
 				Rigidbody rb = GetComponent<Rigidbody>();

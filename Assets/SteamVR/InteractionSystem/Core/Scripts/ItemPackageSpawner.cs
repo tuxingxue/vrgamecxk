@@ -30,24 +30,28 @@ namespace Valve.VR.InteractionSystem
 				CreatePreviewObject();
 			}
 		}
-
+        public GameObject boww;
 		public ItemPackage _itemPackage;
 
 		private bool useItemPackagePreview = true;
 		private bool useFadedPreview = false;
 		private GameObject previewObject;
 
+        public int bowstatus;
 		public bool requireGrabActionToTake = false;
 		public bool requireReleaseActionToReturn = false;
 		public bool showTriggerHint = false;
 
-		[EnumFlags]
+        public SteamVR_Input_Sources handType; // 1
+        public SteamVR_Action_Boolean grabAction; // 3
+
+        [EnumFlags]
 		public Hand.AttachmentFlags attachmentFlags = Hand.defaultAttachmentFlags;
 
 		public bool takeBackItem = false; // if a hand enters this trigger and has the item this spawner dispenses at the top of the stack, remove it from the stack
 
 		public bool acceptDifferentItems = false;
-
+        //private int bowstatus;
 		private GameObject spawnedItem;
 		private bool itemIsSpawned = false;
 
@@ -100,7 +104,9 @@ namespace Valve.VR.InteractionSystem
 		void Start()
 		{
 			VerifyItemPackage();
-		}
+            bowstatus = 0;
+            //gameObject.SetActive(false);
+        }
 
 
 		//-------------------------------------------------
@@ -159,7 +165,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void OnHandHoverBegin( Hand hand )
 		{
-			ItemPackage currentAttachedItemPackage = GetAttachedItemPackage( hand );
+			/*ItemPackage currentAttachedItemPackage = GetAttachedItemPackage( hand );
 
 			if ( currentAttachedItemPackage == itemPackage ) // the item at the top of the hand's stack has an associated ItemPackage
 			{
@@ -174,16 +180,17 @@ namespace Valve.VR.InteractionSystem
 				SpawnAndAttachObject( hand, GrabTypes.Scripted );
 			}
 
-			if (requireGrabActionToTake && showTriggerHint )
-			{
+            if (requireGrabActionToTake && showTriggerHint)
+            {
                 hand.ShowGrabHint("PickUp");
-			}
+            }*/
 		}
 
 
 		//-------------------------------------------------
 		private void TakeBackItem( Hand hand )
 		{
+            print("fuck luohao---put back bow!");
 			RemoveMatchingItemsFromHandStack( itemPackage, hand );
 
 			if ( itemPackage.packageType == ItemPackage.ItemPackageType.TwoHanded )
@@ -218,7 +225,7 @@ namespace Valve.VR.InteractionSystem
 		//-------------------------------------------------
 		private void HandHoverUpdate( Hand hand )
 		{
-			if ( takeBackItem && requireReleaseActionToReturn )
+			/*if ( takeBackItem && requireReleaseActionToReturn )
 			{
                 if (hand.isActive)
 				{
@@ -230,17 +237,33 @@ namespace Valve.VR.InteractionSystem
 					}
 				}
 			}
-
-			if ( requireGrabActionToTake )
+            */
+			if ( requireGrabActionToTake && bowstatus == 0)
 			{
                 GrabTypes startingGrab = hand.GetGrabStarting();
 
-				if (startingGrab != GrabTypes.None)
+				if (grabAction.GetStateDown(handType))
 				{
 					SpawnAndAttachObject( hand, GrabTypes.Scripted);
+                    bowstatus = 1;
+                    return;
 				}
 			}
-		}
+            if (requireGrabActionToTake && bowstatus == 1)
+            {
+                GrabTypes startingGrab = hand.GetGrabStarting();
+
+                if (grabAction.GetStateDown(handType))
+                {
+                    if (hand.isActive)
+                    {
+                        TakeBackItem(hand);
+                        bowstatus = 0;
+                        return; // So that we don't pick up an ItemPackage the same frame that we return it
+                    }
+                }
+            }
+        }
 
 
 		//-------------------------------------------------

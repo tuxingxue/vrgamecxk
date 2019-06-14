@@ -9,10 +9,13 @@ public class set_position : MonoBehaviour
     public Transform can;
     public Transform pesudocamera;
     public Transform motor;
+    public GameObject Bow;
     //private Transform left;
     //private Transform right;
     private GameObject ggleft;
     private GameObject ggright;
+    private GameObject fakeleft;
+    private GameObject fakeright;
     private GameObject motorbike;
     private Rigidbody m_Rigidbody;
     public int humanstatus;
@@ -38,16 +41,20 @@ public class set_position : MonoBehaviour
         //right = transform.Find("righthand");
         ggleft = GameObject.Find("LeftHand");
         ggright = GameObject.Find("RightHand");
+        fakeleft = GameObject.Find("vr_glove_left_model_slim(Clone)");
+        fakeright = GameObject.Find("vr_glove_right_model_slim(Clone)");
         m_Rigidbody = GameObject.Find("Truck").GetComponent<Rigidbody>();
         motorbike = GameObject.Find("Truck");
         ggleft.SetActive(true);
         ggright.SetActive(true);
+        fakeleft.SetActive(false);
+        fakeright.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GetGrab() && changebreak == 0)
+        if (GetGrab() && changebreak == 0 && Bow.GetComponent<Valve.VR.InteractionSystem.ItemPackageSpawner>().bowstatus==0)
         {
             Vector3 vtmp = can.position - pesudocamera.position;
             if (vtmp.sqrMagnitude < gettomotor)
@@ -57,8 +64,8 @@ public class set_position : MonoBehaviour
                 humanstatus = 1 - humanstatus;
                 if (humanstatus == 0)
                 {
-                    //left.Translate(new Vector3(0, 100, 0), Space.World);
-                    //right.Translate(new Vector3(0, 100, 0), Space.World);
+                    fakeleft.SetActive(false);
+                    fakeright.SetActive(false);
                     m_Rigidbody.constraints = 0;
                     ggleft.SetActive(true);
                     ggright.SetActive(true);
@@ -67,8 +74,8 @@ public class set_position : MonoBehaviour
                 }
                 else
                 {
-                    //left.Translate(new Vector3(0, -100, 0), Space.World);
-                    //right.Translate(new Vector3(0, -100, 0), Space.World);
+                    fakeleft.SetActive(true);
+                    fakeright.SetActive(true);
                     StartCoroutine(changedamp());
                     m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationZ;
                     ggleft.SetActive(false);
