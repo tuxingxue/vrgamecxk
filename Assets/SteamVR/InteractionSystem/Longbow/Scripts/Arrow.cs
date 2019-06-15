@@ -121,6 +121,7 @@ namespace Valve.VR.InteractionSystem
 				bool canStick = ( targetPhysMaterial != null && collision.collider.sharedMaterial == targetPhysMaterial && rbSpeed > 0.2f );
 				bool hitBalloon = collision.collider.gameObject.GetComponent<Balloon>() != null;
 
+                bool hitAnimal = collision.collider.gameObject.tag == "Animal";
 				if ( travelledFrames < 2 && !canStick )
 				{
 					// Reset transform but halve your velocity
@@ -177,6 +178,12 @@ namespace Valve.VR.InteractionSystem
 					Physics.IgnoreCollision( arrowHeadRB.GetComponent<Collider>(), collision.collider );
 					Physics.IgnoreCollision( shaftRB.GetComponent<Collider>(), collision.collider );
 				}
+
+                if (hitAnimal)
+                {
+                    collision.collider.gameObject.SetActive(false);
+                    //collision.collider.gameObject.GetComponent<NewBahaviorScript>();
+                }
 
 				if ( canStick )
 				{
