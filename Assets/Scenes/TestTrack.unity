@@ -4939,11 +4939,11 @@ WheelCollider:
   m_Center: {x: 0, y: 0.1, z: 0.05}
   m_Radius: 0.36
   m_SuspensionSpring:
-    spring: 14361.585
-    damper: 2297.8538
+    spring: 12437.72
+    damper: 1990.0354
     targetPosition: 0.5
-  m_SuspensionDistance: 0.19620003
-  m_ForceAppPointDistance: 0.3013308
+  m_SuspensionDistance: 0.19620001
+  m_ForceAppPointDistance: 0.34472352
   m_Mass: 120
   m_WheelDampingRate: 1
   m_ForwardFriction:
@@ -4969,11 +4969,11 @@ WheelCollider:
   m_Center: {x: 0, y: 0.1, z: 0}
   m_Radius: 0.34
   m_SuspensionSpring:
-    spring: 15638.414
-    damper: 2502.1462
+    spring: 17562.281
+    damper: 2809.9648
     targetPosition: 0.5
-  m_SuspensionDistance: 0.19620001
-  m_ForceAppPointDistance: 0.28133076
+  m_SuspensionDistance: 0.1962
+  m_ForceAppPointDistance: 0.32472354
   m_Mass: 120
   m_WheelDampingRate: 1
   m_ForwardFriction:
@@ -6861,6 +6861,7 @@ Transform:
   - {fileID: 5708900526172189282}
   - {fileID: 370638647}
   - {fileID: 3927747538349927336}
+  - {fileID: 800920585336238547}
   m_Father: {fileID: 841690353}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -30, z: 0}
@@ -8201,7 +8202,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 64
+  m_Constraints: 0
   m_CollisionDetection: 2
 --- !u!54 &1711111630
 Rigidbody:
@@ -9334,7 +9335,6 @@ Transform:
   - {fileID: 1994974813}
   - {fileID: 1995041603}
   - {fileID: 4000011105346965}
-  - {fileID: 800920585336238547}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11364,14 +11364,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800920584462105149}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.677, y: 0.962, z: -0.186}
+  m_LocalRotation: {x: -0.22295366, y: -0.21192887, z: 0.6545997, w: 0.69056284}
+  m_LocalPosition: {x: -0.2599, y: 0.095, z: -0.7702}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 800920584901778850}
   m_Father: {fileID: 800920585336238547}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.746, y: -35.793003, z: 87.50101}
 --- !u!1 &800920584462105149
 GameObject:
   m_ObjectHideFlags: 0
@@ -11383,9 +11383,9 @@ GameObject:
   - component: {fileID: 800920584462105148}
   - component: {fileID: 800920584462105145}
   - component: {fileID: 800920584462105150}
-  - component: {fileID: 800920584462105151}
   - component: {fileID: 800920584462105152}
   - component: {fileID: 800920584462105153}
+  - component: {fileID: 800920584462105151}
   m_Layer: 0
   m_Name: BowPickup
   m_TagString: Untagged
@@ -11429,8 +11429,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   justPickedUpItem: 0
---- !u!135 &800920584462105151
-SphereCollider:
+--- !u!136 &800920584462105151
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -11439,9 +11439,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.08636168
+  m_Height: 1.2097752
+  m_Direction: 1
+  m_Center: {x: 0.05, y: -0.0000000087234575, z: -0.099999614}
 --- !u!114 &800920584462105152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11462,7 +11463,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800920584462105149}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60ca2abdcb194274883ba7e91902ec3c, type: 3}
   m_Name: 
@@ -12283,8 +12284,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800920585336238544}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.139, y: 0, z: 0.672}
+  m_LocalRotation: {x: -0, y: 0.258819, z: -0, w: 0.9659259}
+  m_LocalPosition: {x: 0.5324967, y: 0.0149998665, z: 0.08031134}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 800920585166033907}
@@ -12294,8 +12295,8 @@ Transform:
   - {fileID: 1295504564}
   - {fileID: 800920584191578354}
   - {fileID: 800920584269690275}
-  m_Father: {fileID: 1994982223}
-  m_RootOrder: 6
+  m_Father: {fileID: 1705615836}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &800920585364260354
 GameObject:
