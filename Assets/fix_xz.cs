@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class fix_xz : MonoBehaviour
 {
-    public Transform can;
+    private Transform can;
     public GameObject Camerarig;
     float z;
     // Start is called before the first frame update
     void Start()
     {
+        can = Camerarig.transform.Find("SteamVRObjects/VRCamera");
         z = transform.eulerAngles.z;
     }
 
@@ -26,6 +27,7 @@ public class fix_xz : MonoBehaviour
         }
         else
         {
+            //print(transform.eulerAngles);
            /* Vector3 v = transform.eulerAngles;
             v.z = z;
             transform.eulerAngles = v;*/

@@ -37,9 +37,10 @@ namespace Valve.VR.InteractionSystem
 
 		private GameObject scaleParentObject = null;
 
+        int damage = 5;
 
-		//-------------------------------------------------
-		void Start()
+        //-------------------------------------------------
+        void Start()
 		{
 			Physics.IgnoreCollision( shaftRB.GetComponent<Collider>(), Player.instance.headCollider );
 		}
@@ -181,7 +182,8 @@ namespace Valve.VR.InteractionSystem
 
                 if (hitAnimal)
                 {
-                    collision.collider.gameObject.SetActive(false);
+                    collision.collider.gameObject.GetComponent<EmeraldAISystem>().Damage(damage, EmeraldAISystem.TargetType.Player, transform.root, 200);
+                    //collision.collider.gameObject.SetActive(false);
                     //collision.collider.gameObject.GetComponent<NewBahaviorScript>();
                 }
 

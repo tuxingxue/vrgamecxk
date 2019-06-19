@@ -1,0 +1,160 @@
+fileFormatVersion: 2
+guid: 4a3172407929c734ab555cd06ce2c6c7
+timeCreated: 1502470307
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: root
+    100004: SK_Stag
+    100006: STAG_
+    100008: STAG_ Head
+    100010: STAG_ L Calf
+    100012: STAG_ L Clavicle
+    100014: STAG_ L Finger0
+    100016: STAG_ L Foot
+    100018: STAG_ L Forearm
+    100020: STAG_ L Hand
+    100022: STAG_ L HorseLink
+    100024: STAG_ L Thigh
+    100026: STAG_ L UpperArm
+    100028: STAG_ Neck
+    100030: STAG_ Neck1
+    100032: STAG_ Neck2
+    100034: STAG_ Pelvis
+    100036: STAG_ Ponytail1
+    100038: STAG_ R Calf
+    100040: STAG_ R Clavicle
+    100042: STAG_ R Finger0
+    100044: STAG_ R Foot
+    100046: STAG_ R Forearm
+    100048: STAG_ R Hand
+    100050: STAG_ R HorseLink
+    100052: STAG_ R Thigh
+    100054: STAG_ R UpperArm
+    100056: STAG_ Spine
+    100058: STAG_ Spine1
+    100060: STAG_ Tail
+    100062: STAG_ Tail1
+    100064: STAG_ Tail2
+    100066: SK_Stag_LOD0
+    100068: SK_Stag_LOD1
+    100070: SK_Stag_LOD2
+    100072: SK_Stag_LOD3
+    400000: //RootNode
+    400002: root
+    400004: SK_Stag
+    400006: STAG_
+    400008: STAG_ Head
+    400010: STAG_ L Calf
+    400012: STAG_ L Clavicle
+    400014: STAG_ L Finger0
+    400016: STAG_ L Foot
+    400018: STAG_ L Forearm
+    400020: STAG_ L Hand
+    400022: STAG_ L HorseLink
+    400024: STAG_ L Thigh
+    400026: STAG_ L UpperArm
+    400028: STAG_ Neck
+    400030: STAG_ Neck1
+    400032: STAG_ Neck2
+    400034: STAG_ Pelvis
+    400036: STAG_ Ponytail1
+    400038: STAG_ R Calf
+    400040: STAG_ R Clavicle
+    400042: STAG_ R Finger0
+    400044: STAG_ R Foot
+    400046: STAG_ R Forearm
+    400048: STAG_ R Hand
+    400050: STAG_ R HorseLink
+    400052: STAG_ R Thigh
+    400054: STAG_ R UpperArm
+    400056: STAG_ Spine
+    400058: STAG_ Spine1
+    400060: STAG_ Tail
+    400062: STAG_ Tail1
+    400064: STAG_ Tail2
+    400066: SK_Stag_LOD0
+    400068: SK_Stag_LOD1
+    400070: SK_Stag_LOD2
+    400072: SK_Stag_LOD3
+    4300000: SK_Stag
+    4300002: SK_Stag_LOD0
+    4300004: SK_Stag_LOD1
+    4300006: SK_Stag_LOD2
+    4300008: SK_Stag_LOD3
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: SK_Stag
+    13700002: SK_Stag_LOD0
+    13700004: SK_Stag_LOD1
+    13700006: SK_Stag_LOD2
+    13700008: SK_Stag_LOD3
+    20500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages:
+    - .25
+    - .125
+    - .0625
+    - .00999999978
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: root
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

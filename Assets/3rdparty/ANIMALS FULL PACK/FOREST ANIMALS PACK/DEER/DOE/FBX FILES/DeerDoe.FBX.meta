@@ -1,0 +1,160 @@
+fileFormatVersion: 2
+guid: 42ee9c8df16c70346899ee06feb1c41b
+timeCreated: 1502471240
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: DeerDoe_
+    100004: DeerDoe_ Head
+    100006: DeerDoe_ L Calf
+    100008: DeerDoe_ L Clavicle
+    100010: DeerDoe_ L Finger0
+    100012: DeerDoe_ L Foot
+    100014: DeerDoe_ L Forearm
+    100016: DeerDoe_ L Hand
+    100018: DeerDoe_ L HorseLink
+    100020: DeerDoe_ L Thigh
+    100022: DeerDoe_ L UpperArm
+    100024: DeerDoe_ Neck
+    100026: DeerDoe_ Neck1
+    100028: DeerDoe_ Neck2
+    100030: DeerDoe_ Pelvis
+    100032: DeerDoe_ Ponytail1
+    100034: DeerDoe_ R Calf
+    100036: DeerDoe_ R Clavicle
+    100038: DeerDoe_ R Finger0
+    100040: DeerDoe_ R Foot
+    100042: DeerDoe_ R Forearm
+    100044: DeerDoe_ R Hand
+    100046: DeerDoe_ R HorseLink
+    100048: DeerDoe_ R Thigh
+    100050: DeerDoe_ R UpperArm
+    100052: DeerDoe_ Spine
+    100054: DeerDoe_ Spine1
+    100056: DeerDoe_ Tail
+    100058: DeerDoe_ Tail1
+    100060: DeerDoe_ Tail2
+    100062: root
+    100064: SK_DeerDoe
+    100066: SK_DeerDoe_LOD0
+    100068: SK_DeerDoe_LOD1
+    100070: SK_DeerDoe_LOD2
+    100072: SK_DeerDoe_LOD3
+    400000: //RootNode
+    400002: DeerDoe_
+    400004: DeerDoe_ Head
+    400006: DeerDoe_ L Calf
+    400008: DeerDoe_ L Clavicle
+    400010: DeerDoe_ L Finger0
+    400012: DeerDoe_ L Foot
+    400014: DeerDoe_ L Forearm
+    400016: DeerDoe_ L Hand
+    400018: DeerDoe_ L HorseLink
+    400020: DeerDoe_ L Thigh
+    400022: DeerDoe_ L UpperArm
+    400024: DeerDoe_ Neck
+    400026: DeerDoe_ Neck1
+    400028: DeerDoe_ Neck2
+    400030: DeerDoe_ Pelvis
+    400032: DeerDoe_ Ponytail1
+    400034: DeerDoe_ R Calf
+    400036: DeerDoe_ R Clavicle
+    400038: DeerDoe_ R Finger0
+    400040: DeerDoe_ R Foot
+    400042: DeerDoe_ R Forearm
+    400044: DeerDoe_ R Hand
+    400046: DeerDoe_ R HorseLink
+    400048: DeerDoe_ R Thigh
+    400050: DeerDoe_ R UpperArm
+    400052: DeerDoe_ Spine
+    400054: DeerDoe_ Spine1
+    400056: DeerDoe_ Tail
+    400058: DeerDoe_ Tail1
+    400060: DeerDoe_ Tail2
+    400062: root
+    400064: SK_DeerDoe
+    400066: SK_DeerDoe_LOD0
+    400068: SK_DeerDoe_LOD1
+    400070: SK_DeerDoe_LOD2
+    400072: SK_DeerDoe_LOD3
+    4300000: SK_DeerDoe
+    4300002: SK_DeerDoe_LOD0
+    4300004: SK_DeerDoe_LOD1
+    4300006: SK_DeerDoe_LOD2
+    4300008: SK_DeerDoe_LOD3
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: SK_DeerDoe
+    13700002: SK_DeerDoe_LOD0
+    13700004: SK_DeerDoe_LOD1
+    13700006: SK_DeerDoe_LOD2
+    13700008: SK_DeerDoe_LOD3
+    20500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 0
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages:
+    - .25
+    - .125
+    - .0625
+    - .00999999978
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: root
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
