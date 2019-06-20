@@ -146,6 +146,7 @@ namespace EmeraldAI.Utility
 
         public void DetectTarget(GameObject C)
         {
+       
             if (EmeraldComponent.UseHeadLookRef == EmeraldAISystem.YesOrNo.Yes && C.CompareTag(EmeraldComponent.PlayerTag) && EmeraldComponent.CombatStateRef == EmeraldAISystem.CombatState.NotActive)
             {
                 EmeraldComponent.HeadLookRef = C.transform;
