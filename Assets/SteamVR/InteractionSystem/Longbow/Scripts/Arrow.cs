@@ -182,7 +182,7 @@ namespace Valve.VR.InteractionSystem
 
                 if (hitAnimal)
                 {
-                    collision.collider.gameObject.GetComponent<EmeraldAISystem>().Damage(damage, EmeraldAISystem.TargetType.Player, transform.root, 200);
+                    //collision.collider.gameObject.GetComponent<EmeraldAISystem>().Damage(damage, EmeraldAISystem.TargetType.Player, transform.root, 200);
                     //collision.collider.gameObject.SetActive(false);
                     //collision.collider.gameObject.GetComponent<NewBahaviorScript>();
                 }
