@@ -38,7 +38,7 @@ namespace Valve.VR.InteractionSystem
 
 		private AllowTeleportWhileAttachedToHand allowTeleport = null;
 
-		public int maxArrowCount = 10;
+		public int maxArrowCount = 100;
 		private List<GameObject> arrowList;
 
 
