@@ -1391,6 +1391,7 @@ namespace Valve.VR.InteractionSystem
         public void TriggerHapticPulse(ushort microSecondsDuration)
         {
             float seconds = (float)microSecondsDuration / 1000000f;
+            //print(seconds);
             hapticAction.Execute(0, seconds, 1f / seconds, 1, handType);
         }
 

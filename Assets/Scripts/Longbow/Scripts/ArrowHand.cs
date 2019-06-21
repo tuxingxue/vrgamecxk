@@ -145,6 +145,7 @@ namespace Valve.VR.InteractionSystem
                 if(GetTeleportDown()&& !fired)
                 {
                     GetComponentInChildren<SimpleShoot>().Shoot();
+                    hand.TriggerHapticPulse(0.05f,100f,10f);
                     fired = true;
                     StartCoroutine(killshoot());
                 }

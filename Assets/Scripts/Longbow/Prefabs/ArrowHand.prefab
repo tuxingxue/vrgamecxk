@@ -255,7 +255,7 @@ MonoBehaviour:
   positionLerpThreshold: 0.15
   arrowSpawnSound: {fileID: 11498220}
   maxArrowCount: 100
-  firetime: 1
+  firetime: 0.3
   gunstatus: 0
   currentGun: {fileID: 7316477602089852030}
   BtnTrigger: {fileID: 7316564560126654322}
@@ -1820,7 +1820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1690370004738036, guid: f2b3bff7c9d735441b445bb19a2fe9cc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4878850369403266, guid: f2b3bff7c9d735441b445bb19a2fe9cc, type: 3}
       propertyPath: m_LocalPosition.x

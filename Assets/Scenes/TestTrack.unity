@@ -2781,6 +2781,7 @@ MonoBehaviour:
   teleportmask:
     serializedVersion: 2
     m_Bits: 512
+  timetele: 0.5
   reticle_pre: {fileID: 125956, guid: 08861ead77e42c741a15a94d4246f8b3, type: 3}
   camerarigtrans: {fileID: 861916475}
   cameratrans: {fileID: 4000014672404769}
@@ -6031,7 +6032,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705992866}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.000000026786, z: 0.000000013064}
+  m_LocalPosition: {x: 0, y: -0.03, z: -0.019}
   m_LocalScale: {x: 1, y: 1.1, z: 1.1}
   m_Children: []
   m_Father: {fileID: 1705542894}
@@ -9522,6 +9523,7 @@ MonoBehaviour:
   laser_yellow: {fileID: 8013727811736925383, guid: bc84feee441df144e8480d50ed36ba18,
     type: 3}
   maximummove: 10
+  timetele: 0.5
   teleportmask:
     serializedVersion: 2
     m_Bits: 512

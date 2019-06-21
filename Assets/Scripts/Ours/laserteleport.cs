@@ -17,6 +17,9 @@ public class laserteleport : MonoBehaviour
     private Transform lasertrans1;
     private Vector3 hitPoint;
 
+    public float timetele = 0.5f;
+    private bool cantele;
+
     public LayerMask teleportmask;
     public GameObject reticle_pre;
     private Transform reticletrans;
@@ -31,6 +34,7 @@ public class laserteleport : MonoBehaviour
         lasertrans1 = laser1.transform;
         reticle = Instantiate(reticle_pre);
         reticletrans = reticle.transform;
+        cantele = true;
     }
 
     // Update is called once per frame
@@ -59,10 +63,18 @@ public class laserteleport : MonoBehaviour
             laser1.SetActive(false);
             reticle.SetActive(false);
         }
-        if (teleportAction.GetStateUp(handType) && whetherTeleport)
+        if (teleportAction.GetStateUp(handType) && whetherTeleport && cantele)
         {
             Teleport();
+            cantele = false;
+            StartCoroutine(recovertele());
         }
+    }
+
+    private IEnumerator recovertele()
+    {
+        yield return new WaitForSeconds(timetele);
+        cantele = true;
     }
 
     private void EmitLaser(RaycastHit hit)
