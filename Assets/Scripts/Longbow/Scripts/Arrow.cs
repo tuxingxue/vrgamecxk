@@ -38,7 +38,7 @@ namespace Valve.VR.InteractionSystem
 
 		private GameObject scaleParentObject = null;
 
-        int damage = 999;
+        public int damage = 10;
 
         //-------------------------------------------------
         void Start()

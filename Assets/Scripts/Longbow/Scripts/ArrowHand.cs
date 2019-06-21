@@ -41,8 +41,14 @@ namespace Valve.VR.InteractionSystem
 		public int maxArrowCount = 100;
 		private List<GameObject> arrowList;
 
+        public float firetime = 1f;
+        private bool fired;
+
         public int gunstatus = 0;
         public GameObject currentGun;
+        public GameObject BtnTrigger;
+        public GameObject BtnTrigger2;
+        public GameObject BtnTrigger3;
 
         public SteamVR_Input_Sources handType; // 1
         public SteamVR_Action_Boolean teleportAction; // 2
@@ -51,7 +57,10 @@ namespace Valve.VR.InteractionSystem
         {
             return teleportAction.GetStateDown(handType);
         }
-
+        public bool GetTeleportUp()
+        {
+            return teleportAction.GetStateUp(handType);
+        }
         public bool GetGrab() // 2
         {
             return grabAction.GetStateDown(handType);
@@ -128,7 +137,22 @@ namespace Valve.VR.InteractionSystem
             }
             if (gunstatus == 1)
             {
-
+                if (GetTeleportDown())
+                {
+                    BtnTrigger.transform.localPosition = BtnTrigger2.transform.localPosition;
+                    BtnTrigger.transform.eulerAngles = BtnTrigger2.transform.eulerAngles;
+                }
+                if(GetTeleportDown()&& !fired)
+                {
+                    GetComponentInChildren<SimpleShoot>().Shoot();
+                    fired = true;
+                    StartCoroutine(killshoot());
+                }
+                if (GetTeleportUp())
+                {
+                    BtnTrigger.transform.localPosition = BtnTrigger3.transform.localPosition;
+                    BtnTrigger.transform.eulerAngles = BtnTrigger3.transform.eulerAngles;
+                }
             }
             else
             {
@@ -334,5 +358,11 @@ namespace Valve.VR.InteractionSystem
 		{
 			bow = hand.otherHand.GetComponentInChildren<Longbow>();
 		}
-	}
+
+        private IEnumerator killshoot()
+        {
+            yield return new WaitForSeconds(firetime);
+            fired = false;
+        }
+    }
 }
