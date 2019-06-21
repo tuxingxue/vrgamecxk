@@ -183,6 +183,7 @@ namespace Valve.VR.InteractionSystem
 
                 if (hitAnimal)
                 {
+                    //TODO: 箭吸附到动物身上
                     collision.collider.gameObject.GetComponent<EmeraldAI.EmeraldAISystem>().Damage(damage, EmeraldAI.EmeraldAISystem.TargetType.Player, transform.root, 200);
                     //collision.collider.gameObject.SetActive(false);
                     //collision.collider.gameObject.GetComponent<NewBahaviorScript>();
