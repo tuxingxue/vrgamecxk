@@ -41,9 +41,23 @@ namespace Valve.VR.InteractionSystem
 		public int maxArrowCount = 100;
 		private List<GameObject> arrowList;
 
+        public int gunstatus = 0;
+        public GameObject currentGun;
 
-		//-------------------------------------------------
-		void Awake()
+        public SteamVR_Input_Sources handType; // 1
+        public SteamVR_Action_Boolean teleportAction; // 2
+        public SteamVR_Action_Boolean grabAction; // 3
+        public bool GetTeleportDown() // 1
+        {
+            return teleportAction.GetStateDown(handType);
+        }
+
+        public bool GetGrab() // 2
+        {
+            return grabAction.GetStateDown(handType);
+        }
+        //-------------------------------------------------
+        void Awake()
 		{
 			allowTeleport = GetComponent<AllowTeleportWhileAttachedToHand>();
 			//allowTeleport.teleportAllowed = true;
@@ -98,98 +112,119 @@ namespace Valve.VR.InteractionSystem
 				return;
 			}
 
-			if ( allowArrowSpawn && ( currentArrow == null ) ) // If we're allowed to have an active arrow in hand but don't yet, spawn one
-			{
-				currentArrow = InstantiateArrow();
-				arrowSpawnSound.Play();
-			}
+            if(GetGrab())
+            {
+                gunstatus ^= 1;
+                if(gunstatus == 1)
+                {
+                    currentArrow.SetActive(false);
+                    currentGun.SetActive(true);
+                }
+                else
+                {
+                    currentArrow.SetActive(true);
+                    currentGun.SetActive(false);
+                }
+            }
+            if (gunstatus == 1)
+            {
 
-			float distanceToNockPosition = Vector3.Distance( transform.parent.position, bow.nockTransform.position );
+            }
+            else
+            {
+                if (allowArrowSpawn && (currentArrow == null)) // If we're allowed to have an active arrow in hand but don't yet, spawn one
+                {
+                    currentArrow = InstantiateArrow();
+                    arrowSpawnSound.Play();
+                }
 
-			// If there's an arrow spawned in the hand and it's not nocked yet
-			if ( !nocked )
-			{
-				// If we're close enough to nock position that we want to start arrow rotation lerp, do so
-				if ( distanceToNockPosition < rotationLerpThreshold )
-				{
-					float lerp = Util.RemapNumber( distanceToNockPosition, rotationLerpThreshold, lerpCompleteDistance, 0, 1 );
+                float distanceToNockPosition = Vector3.Distance(transform.parent.position, bow.nockTransform.position);
 
-					arrowNockTransform.rotation = Quaternion.Lerp( arrowNockTransform.parent.rotation, bow.nockRestTransform.rotation, lerp );
-				}
-				else // Not close enough for rotation lerp, reset rotation
-				{
-					arrowNockTransform.localRotation = Quaternion.identity;
-				}
+                // If there's an arrow spawned in the hand and it's not nocked yet
+                if (!nocked)
+                {
+                    // If we're close enough to nock position that we want to start arrow rotation lerp, do so
+                    if (distanceToNockPosition < rotationLerpThreshold)
+                    {
+                        float lerp = Util.RemapNumber(distanceToNockPosition, rotationLerpThreshold, lerpCompleteDistance, 0, 1);
 
-				// If we're close enough to the nock position that we want to start arrow position lerp, do so
-				if ( distanceToNockPosition < positionLerpThreshold )
-				{
-					float posLerp = Util.RemapNumber( distanceToNockPosition, positionLerpThreshold, lerpCompleteDistance, 0, 1 );
+                        arrowNockTransform.rotation = Quaternion.Lerp(arrowNockTransform.parent.rotation, bow.nockRestTransform.rotation, lerp);
+                    }
+                    else // Not close enough for rotation lerp, reset rotation
+                    {
+                        arrowNockTransform.localRotation = Quaternion.identity;
+                    }
 
-					posLerp = Mathf.Clamp( posLerp, 0f, 1f );
+                    // If we're close enough to the nock position that we want to start arrow position lerp, do so
+                    if (distanceToNockPosition < positionLerpThreshold)
+                    {
+                        float posLerp = Util.RemapNumber(distanceToNockPosition, positionLerpThreshold, lerpCompleteDistance, 0, 1);
 
-					arrowNockTransform.position = Vector3.Lerp( arrowNockTransform.parent.position, bow.nockRestTransform.position, posLerp );
-				}
-				else // Not close enough for position lerp, reset position
-				{
-					arrowNockTransform.position = arrowNockTransform.parent.position;
-				}
+                        posLerp = Mathf.Clamp(posLerp, 0f, 1f);
+
+                        arrowNockTransform.position = Vector3.Lerp(arrowNockTransform.parent.position, bow.nockRestTransform.position, posLerp);
+                    }
+                    else // Not close enough for position lerp, reset position
+                    {
+                        arrowNockTransform.position = arrowNockTransform.parent.position;
+                    }
 
 
-				// Give a haptic tick when lerp is visually complete
-				if ( distanceToNockPosition < lerpCompleteDistance )
-				{
-					if ( !arrowLerpComplete )
-					{
-						arrowLerpComplete = true;
-						hand.TriggerHapticPulse( 500 );
-					}
-				}
-				else
-				{
-					if ( arrowLerpComplete )
-					{
-						arrowLerpComplete = false;
-					}
-				}
+                    // Give a haptic tick when lerp is visually complete
+                    if (distanceToNockPosition < lerpCompleteDistance)
+                    {
+                        if (!arrowLerpComplete)
+                        {
+                            arrowLerpComplete = true;
+                            hand.TriggerHapticPulse(500);
+                        }
+                    }
+                    else
+                    {
+                        if (arrowLerpComplete)
+                        {
+                            arrowLerpComplete = false;
+                        }
+                    }
 
-				// Allow nocking the arrow when controller is close enough
-				if ( distanceToNockPosition < nockDistance )
-				{
-					if ( !inNockRange )
-					{
-						inNockRange = true;
-						bow.ArrowInPosition();
-					}
-				}
-				else
-				{
-					if ( inNockRange )
-					{
-						inNockRange = false;
-					}
-				}
+                    // Allow nocking the arrow when controller is close enough
+                    if (distanceToNockPosition < nockDistance)
+                    {
+                        if (!inNockRange)
+                        {
+                            inNockRange = true;
+                            bow.ArrowInPosition();
+                        }
+                    }
+                    else
+                    {
+                        if (inNockRange)
+                        {
+                            inNockRange = false;
+                        }
+                    }
 
-                GrabTypes bestGrab = hand.GetBestGrabbingType(GrabTypes.Pinch, true);
+                    GrabTypes bestGrab = hand.GetBestGrabbingType(GrabTypes.Pinch, true);
 
-                // If arrow is close enough to the nock position and we're pressing the trigger, and we're not nocked yet, Nock
-                if ( ( distanceToNockPosition < nockDistance ) && bestGrab != GrabTypes.None && !nocked )
-				{
-					if ( currentArrow == null )
-					{
-						currentArrow = InstantiateArrow();
-					}
+                    // If arrow is close enough to the nock position and we're pressing the trigger, and we're not nocked yet, Nock
+                    if ((distanceToNockPosition < nockDistance) && bestGrab != GrabTypes.None && !nocked)
+                    {
+                        if (currentArrow == null)
+                        {
+                            currentArrow = InstantiateArrow();
+                        }
 
-					nocked = true;
-                    nockedWithType = bestGrab;
-					bow.StartNock( this );
-					hand.HoverLock( GetComponent<Interactable>() );
-					allowTeleport.teleportAllowed = false;
-					currentArrow.transform.parent = bow.nockTransform;
-					Util.ResetTransform( currentArrow.transform );
-					Util.ResetTransform( arrowNockTransform );
-				}
-			}
+                        nocked = true;
+                        nockedWithType = bestGrab;
+                        bow.StartNock(this);
+                        hand.HoverLock(GetComponent<Interactable>());
+                        allowTeleport.teleportAllowed = false;
+                        currentArrow.transform.parent = bow.nockTransform;
+                        Util.ResetTransform(currentArrow.transform);
+                        Util.ResetTransform(arrowNockTransform);
+                    }
+                }
+            }
 
 
 			// If arrow is nocked, and we release the trigger
