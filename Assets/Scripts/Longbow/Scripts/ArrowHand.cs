@@ -37,10 +37,10 @@ namespace Valve.VR.InteractionSystem
 		public SoundPlayOneshot arrowSpawnSound;
 
 		private AllowTeleportWhileAttachedToHand allowTeleport = null;
-
-		public int maxArrowCount = 100;
+        public Texture2D texture;
+        public int maxArrowCount = 100;
 		private List<GameObject> arrowList;
-
+        private Vector3 hitPoint;
         public float firetime = 1f;
         private bool fired;
 
@@ -50,9 +50,14 @@ namespace Valve.VR.InteractionSystem
         public GameObject BtnTrigger2;
         public GameObject BtnTrigger3;
 
+        public int maximummove;
+        public LayerMask teleportmask;
+        public GameObject shooting;
         public SteamVR_Input_Sources handType; // 1
         public SteamVR_Action_Boolean teleportAction; // 2
         public SteamVR_Action_Boolean grabAction; // 3
+
+        public GameObject rightback;
         public bool GetTeleportDown() // 1
         {
             return teleportAction.GetStateDown(handType);
@@ -137,6 +142,22 @@ namespace Valve.VR.InteractionSystem
             }
             if (gunstatus == 1)
             {
+                addshoot();
+                /*RaycastHit hit;
+                Vector3 posh= transform.GetChild(0).position;
+                if (Physics.Raycast(posh, transform.GetChild(1).position - posh, out hit, maximummove, teleportmask))
+                {
+                    hitPoint = hit.point;
+                    shooting.SetActive(true);
+                    shooting.transform.position = hitPoint;
+                    Vector3 screenPos = Camera.main.WorldToScreenPoint(hitPoint);
+
+                }
+                else
+                {
+                    shooting.SetActive(false);
+                }*/
+
                 if (GetTeleportDown())
                 {
                     BtnTrigger.transform.localPosition = BtnTrigger2.transform.localPosition;
@@ -147,6 +168,7 @@ namespace Valve.VR.InteractionSystem
                     GetComponentInChildren<SimpleShoot>().Shoot();
                     hand.TriggerHapticPulse(0.05f,100f,10f);
                     fired = true;
+                    //transform.parent.parent.Translate(new Vector3(0, 0.1f, 0));
                     StartCoroutine(killshoot());
                 }
                 if (GetTeleportUp())
@@ -321,9 +343,39 @@ namespace Valve.VR.InteractionSystem
 			allowArrowSpawn = true;
 		}
 
+        
 
-		//-------------------------------------------------
-		private IEnumerator ArrowReleaseHaptics()
+
+
+        void addshoot()
+        {
+            if (gunstatus == 1)
+            {
+                RaycastHit hit;
+                Vector3 posh = transform.GetChild(0).position;
+                if (Physics.Raycast(posh, transform.GetChild(1).position - posh, out hit, maximummove, teleportmask))
+                {
+                    print(hit.transform.gameObject);
+                    hitPoint = hit.point;
+                    Vector3 cantran = transform.parent.parent.parent.GetChild(2).position;
+                    Vector3 shootdir = hitPoint - cantran;
+                    shooting.SetActive(true);
+                    float fm = Mathf.Pow(shootdir.magnitude,0.7f)*0.02f;
+                    shooting.transform.localScale = new Vector3(fm, fm, fm);
+                    shootdir = shootdir * 0.1f / shootdir.magnitude;
+                    
+                    shooting.transform.position = hitPoint - shootdir;
+                }
+                else
+                {
+                    shooting.SetActive(false);
+                }
+            }
+                
+          
+        }
+        //-------------------------------------------------
+        private IEnumerator ArrowReleaseHaptics()
 		{
 			yield return new WaitForSeconds( 0.05f );
 
