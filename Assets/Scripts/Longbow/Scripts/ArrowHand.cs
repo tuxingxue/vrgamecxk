@@ -140,9 +140,10 @@ namespace Valve.VR.InteractionSystem
                     currentGun.SetActive(false);
                 }
             }
+            addshoot();
             if (gunstatus == 1)
             {
-                addshoot();
+                
                 /*RaycastHit hit;
                 Vector3 posh= transform.GetChild(0).position;
                 if (Physics.Raycast(posh, transform.GetChild(1).position - posh, out hit, maximummove, teleportmask))
@@ -355,21 +356,22 @@ namespace Valve.VR.InteractionSystem
                 Vector3 posh = transform.GetChild(0).position;
                 if (Physics.Raycast(posh, transform.GetChild(1).position - posh, out hit, maximummove, teleportmask))
                 {
-                    print(hit.transform.gameObject);
+                    //print(hit.transform.gameObject);
                     hitPoint = hit.point;
                     Vector3 cantran = transform.parent.parent.parent.GetChild(2).position;
                     Vector3 shootdir = hitPoint - cantran;
                     shooting.SetActive(true);
                     float fm = Mathf.Pow(shootdir.magnitude,0.7f)*0.02f;
                     shooting.transform.localScale = new Vector3(fm, fm, fm);
-                    shootdir = shootdir * 0.1f / shootdir.magnitude;
+                    shootdir = shootdir * 1f / shootdir.magnitude;
                     
-                    shooting.transform.position = hitPoint - shootdir;
+                    shooting.transform.position = hitPoint - shootdir + new Vector3(0,0.5f*fm,0);
                 }
-                else
-                {
-                    shooting.SetActive(false);
-                }
+                
+            }
+            else
+            {
+                shooting.SetActive(false);
             }
                 
           
