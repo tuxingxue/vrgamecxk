@@ -10,8 +10,11 @@ public class set_position : MonoBehaviour
     public Transform pesudocamera;
     public Transform motor;
     public GameObject Bow;
+    private Valve.VR.InteractionSystem.Hand hand1, hand2;
     //private Transform left;
     //private Transform right;
+    public float speed;
+    private float aspeed;
     private GameObject ggleft;
     private GameObject ggright;
     private GameObject fakeleft;
@@ -37,6 +40,8 @@ public class set_position : MonoBehaviour
     void Start()
     {
         humanstatus = 0;
+        speed = 0f;
+        aspeed = 0f;
         //left = transform.Find("lefthand");
         //right = transform.Find("righthand");
         ggleft = GameObject.Find("LeftHand");
@@ -49,6 +54,8 @@ public class set_position : MonoBehaviour
         ggright.SetActive(true);
         fakeleft.SetActive(false);
         fakeright.SetActive(false);
+        hand1 = GameObject.Find("LeftHand").GetComponent<Valve.VR.InteractionSystem.Hand>();
+        hand2 = GameObject.Find("RightHand").GetComponent<Valve.VR.InteractionSystem.Hand>();
     }
 
     // Update is called once per frame
@@ -95,6 +102,30 @@ public class set_position : MonoBehaviour
             transform.eulerAngles = vtmp2;
             Vector3 vtmp1 = pesudocamera.position - can.position;
             transform.Translate(vtmp1, Space.World);
+            speed = vtmp1.magnitude/Time.deltaTime;
+            if(speed>3f)
+            {
+                hand1.TriggerHapticPulse(0.01f, 100f, speed * 0.0015f);
+                hand2.TriggerHapticPulse(0.01f, 100f, speed * 0.0015f);
+            }
+            float xangle;
+            if(Mathf.Abs(motor.eulerAngles.x)>180f)
+            {
+                xangle = 360f - Mathf.Abs(motor.eulerAngles.x);
+            }
+            else
+            {
+                xangle = Mathf.Abs(motor.eulerAngles.x);
+            }
+            if(speed > 0.03f && xangle > 8f)
+            {
+                hand1.TriggerHapticPulse(0.05f, 100f, speed * 0.03f);
+                hand2.TriggerHapticPulse(0.05f, 100f, speed * 0.03f);
+            }
+        }
+        else
+        {
+            speed = 0;
         }
     }
 
@@ -111,5 +142,18 @@ public class set_position : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         motorbike.GetComponent<EasySuspension>().setdamping(tmpd);
     }
+
+    public float getspeed()
+    {
+        //Vector3 vtmp1 = pesudocamera.position - can.position;
+        //float speed = vtmp1.magnitude / Time.deltaTime;
+        if (humanstatus == 1 && speed > 3f)
+        {
+            hand1.TriggerHapticPulse(0.05f, 100f, speed * 0.05f);
+            hand2.TriggerHapticPulse(0.05f, 100f, speed * 0.05f);
+        }
+        return speed;
+    }
+
 }
 
