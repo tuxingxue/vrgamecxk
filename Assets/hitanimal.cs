@@ -21,9 +21,13 @@ public class hitanimal : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        int speed = (int)player.GetComponent<set_position>().getspeed();
+        StartCoroutine(hitann(speed,collision));
+    }
 
-        int speed = (int) player.GetComponent<set_position>().getspeed();
-        print(speed);
+    IEnumerator hitann(int speed, Collision collision)
+    {
+        yield return new WaitForSeconds(0.05f);
         bool hitAnimal = collision.collider.gameObject.tag == "Animal";
         if (hitAnimal)
         {

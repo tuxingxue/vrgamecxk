@@ -895,8 +895,8 @@ namespace EmeraldAI.Utility
                 GetComponent<EmeraldAISystem>().enabled = false;
                 EmeraldComponent.EmeraldDetectionComponent.enabled = false;
                 EmeraldComponent.EmeraldEventsManagerComponent.enabled = false;
-                EmeraldComponent.AIBoxCollider.enabled = false;
                 EmeraldComponent.AICollider.enabled = false;
+                EmeraldComponent.AIBoxCollider.enabled = false;
             }
             else if (EmeraldComponent.DeathTypeRef == EmeraldAISystem.DeathType.Animation)
             {
@@ -905,7 +905,6 @@ namespace EmeraldAI.Utility
                     CurrentForce += Time.deltaTime;                   
                     yield return null;
                 }
-
                 EmeraldComponent.AIAnimator.enabled = false;
                 GetComponent<EmeraldAISystem>().enabled = false;
             }           

@@ -149,8 +149,8 @@ public class set_position : MonoBehaviour
         //float speed = vtmp1.magnitude / Time.deltaTime;
         if (humanstatus == 1 && speed > 3f)
         {
-            hand1.TriggerHapticPulse(0.05f, 100f, speed * 0.05f);
-            hand2.TriggerHapticPulse(0.05f, 100f, speed * 0.05f);
+            hand1.TriggerHapticPulse(0.03f, 50f, speed * 0.05f);
+            hand2.TriggerHapticPulse(0.03f, 50f, speed * 0.05f);
         }
         return speed;
     }
