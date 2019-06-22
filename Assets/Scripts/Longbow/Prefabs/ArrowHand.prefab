@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 114000011899610526}
   - component: {fileID: 114000012696964694}
   - component: {fileID: 114000012786783108}
+  - component: {fileID: 2635502106514802510}
   m_Layer: 0
   m_Name: ArrowHand
   m_TagString: Untagged
@@ -410,6 +411,25 @@ MonoBehaviour:
   previewPoseSelection: 0
   blendingBehaviours: []
   scale: 1
+--- !u!95 &2635502106514802510
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187848}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 06d900ff74a0e854c8078ab447a1b3c2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &191840
 GameObject:
   m_ObjectHideFlags: 0
