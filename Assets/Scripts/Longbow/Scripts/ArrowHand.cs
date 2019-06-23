@@ -377,7 +377,7 @@ namespace Valve.VR.InteractionSystem
                     Vector3 cantran = transform.parent.parent.parent.GetChild(2).position;
                     Vector3 shootdir = hitPoint - cantran;
                     shooting.SetActive(true);
-                    float fm = Mathf.Pow(shootdir.magnitude, 0.8f) * 0.015f, shoo = shootdir.magnitude;
+                    float fm = Mathf.Pow(shootdir.magnitude, 0.95f) * 0.01f, shoo = shootdir.magnitude;
                     if(shootdir.magnitude>4f)
                     {
                         shootdir = shootdir * 2f / shootdir.magnitude;
@@ -394,9 +394,9 @@ namespace Valve.VR.InteractionSystem
                 {
                     Vector3 cantran = transform.parent.parent.parent.GetChild(2).position, tmpp = transform.GetChild(1).position - posh;
                     shooting.SetActive(true);
-                    float fm = Mathf.Pow(maximummove, 0.8f) * 0.015f;
+                    float fm = Mathf.Pow(100f, 0.95f) * 0.01f;
                     shooting.transform.localScale = new Vector3(fm, fm, fm);
-                    shooting.transform.position = cantran + maximummove * (tmpp/tmpp.magnitude) + new Vector3(0, 0.5f * fm, 0);
+                    shooting.transform.position = cantran + 100f * (tmpp/tmpp.magnitude) + new Vector3(0, 0.5f * fm, 0);
                 }
             }
             else
