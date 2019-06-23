@@ -282,8 +282,12 @@ MonoBehaviour:
   grabAction:
     actionPath: /actions/default/in/GrabGrip
     needsReinit: 0
-  holePrefab: {fileID: 28243406514416121, guid: b351278a4b89ffc4ca369ede8e470f2e,
-    type: 3}
+  holePrefab:
+  - {fileID: 124408, guid: db9824ade1f4a1e4cb49a055d458be66, type: 3}
+  - {fileID: 124408, guid: 20cc26378576d8b40a135fde664a32f3, type: 3}
+  - {fileID: 124408, guid: fde7ea191d3bf2241a61249a09c83abb, type: 3}
+  - {fileID: 124408, guid: 60a0e9ef83c987640b3b9278f62e2f26, type: 3}
+  - {fileID: 124408, guid: c9ce7c68ede0dc34ea7f2ec05f9a460b, type: 3}
   rightback: {fileID: 0}
 --- !u!114 &11426438
 MonoBehaviour:

@@ -57,7 +57,7 @@ namespace Valve.VR.InteractionSystem
         public SteamVR_Action_Boolean teleportAction; // 2
         public SteamVR_Action_Boolean grabAction; // 3
 
-        public GameObject holePrefab;
+        public GameObject[] holePrefab;
 
         public GameObject rightback;
         public bool GetTeleportDown() // 1
@@ -348,15 +348,16 @@ namespace Valve.VR.InteractionSystem
 			allowArrowSpawn = true;
 		}
 
-        
 
+        int gay=0;
         void createhole()
         {
             RaycastHit hit;
             Vector3 posh = transform.GetChild(0).position;
+
             if (Physics.Raycast(posh, transform.GetChild(1).position - posh, out hit, maximummove, teleportmask1))
             {
-                GameObject tmpHole = Instantiate(holePrefab, hit.point, Quaternion.identity);
+                GameObject tmpHole = Instantiate(holePrefab[gay=(gay+1)%5], hit.point, Quaternion.identity);
                 tmpHole.transform.LookAt(hit.point - hit.normal);
                 tmpHole.transform.Translate(Vector3.back * 0.01f);
             }
