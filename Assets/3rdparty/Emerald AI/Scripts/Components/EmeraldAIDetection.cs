@@ -758,6 +758,7 @@ namespace EmeraldAI.Utility
                 }
 
                 EmeraldComponent.DeathDelay = Random.Range(EmeraldComponent.DeathDelayMin, EmeraldComponent.DeathDelayMax + 1);
+                if(this.isActiveAndEnabled)
                 EmeraldComponent.m_NavMeshAgent.destination = this.transform.position;
                 EmeraldComponent.DeathDelayActive = true;
             }

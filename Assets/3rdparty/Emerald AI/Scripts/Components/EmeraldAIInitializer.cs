@@ -907,6 +907,8 @@ namespace EmeraldAI.Utility
                 }
                 EmeraldComponent.AIAnimator.enabled = false;
                 GetComponent<EmeraldAISystem>().enabled = false;
+                yield return new WaitForSeconds(2f);
+                gameObject.SetActive(false);
             }           
         }
     }
