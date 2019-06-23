@@ -51,11 +51,13 @@ namespace Valve.VR.InteractionSystem
         public GameObject BtnTrigger3;
 
         public int maximummove;
-        public LayerMask teleportmask;
+        public LayerMask teleportmask, teleportmask1;
         public GameObject shooting;
         public SteamVR_Input_Sources handType; // 1
         public SteamVR_Action_Boolean teleportAction; // 2
         public SteamVR_Action_Boolean grabAction; // 3
+
+        public GameObject holePrefab;
 
         public GameObject rightback;
         public bool GetTeleportDown() // 1
@@ -166,6 +168,7 @@ namespace Valve.VR.InteractionSystem
                 }
                 if(GetTeleportDown()&& !fired)
                 {
+                    createhole();
                     GetComponentInChildren<SimpleShoot>().Shoot();
                     hand.TriggerHapticPulse(0.05f,100f,30f);
                     fired = true;
@@ -347,7 +350,17 @@ namespace Valve.VR.InteractionSystem
 
         
 
-
+        void createhole()
+        {
+            RaycastHit hit;
+            Vector3 posh = transform.GetChild(0).position;
+            if (Physics.Raycast(posh, transform.GetChild(1).position - posh, out hit, maximummove, teleportmask1))
+            {
+                GameObject tmpHole = Instantiate(holePrefab, hit.point, Quaternion.identity);
+                tmpHole.transform.LookAt(hit.point - hit.normal);
+                tmpHole.transform.Translate(Vector3.back * 0.01f);
+            }
+        }
 
         void addshoot()
         {
@@ -364,7 +377,15 @@ namespace Valve.VR.InteractionSystem
                     shooting.SetActive(true);
                     float fm = Mathf.Pow(shootdir.magnitude,0.7f)*0.02f;
                     shooting.transform.localScale = new Vector3(fm, fm, fm);
-                    shootdir = shootdir * 1f / shootdir.magnitude;
+                    if(shootdir.magnitude>2)
+                    {
+                        shootdir = shootdir * 1f / shootdir.magnitude;
+                    }
+                    else
+                    {
+                        shootdir = shootdir / 2f;
+                    }
+                    
                     
                     shooting.transform.position = hitPoint - shootdir + new Vector3(0,0.5f*fm,0);
                 }

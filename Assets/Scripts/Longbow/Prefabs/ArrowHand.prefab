@@ -271,6 +271,9 @@ MonoBehaviour:
   teleportmask:
     serializedVersion: 2
     m_Bits: 3872
+  teleportmask1:
+    serializedVersion: 2
+    m_Bits: 2560
   shooting: {fileID: 5953361275021096830}
   handType: 2
   teleportAction:
@@ -279,6 +282,8 @@ MonoBehaviour:
   grabAction:
     actionPath: /actions/default/in/GrabGrip
     needsReinit: 0
+  holePrefab: {fileID: 28243406514416121, guid: b351278a4b89ffc4ca369ede8e470f2e,
+    type: 3}
   rightback: {fileID: 0}
 --- !u!114 &11426438
 MonoBehaviour:
