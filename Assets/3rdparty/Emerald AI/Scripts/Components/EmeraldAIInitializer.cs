@@ -9,7 +9,7 @@ namespace EmeraldAI.Utility
     public class EmeraldAIInitializer : MonoBehaviour
     {
         EmeraldAISystem EmeraldComponent;
-
+        private bool hascount = false;
         public void Initialize()
         {
             EmeraldComponent = GetComponent<EmeraldAISystem>();
@@ -863,8 +863,13 @@ namespace EmeraldAI.Utility
         {
             //Get a random ragdoll component to apply force to
             //GameObject text = GameObject.Find("Player/SteamVRObjects/VRCamera/Text");
-            text.GetComponent<TMPro.TextMeshPro>().text = "Killed: " + (text.GetComponent<variable>().killed + 1).ToString();
-            text.GetComponent<variable>().killed++;
+            if (!hascount)
+            {
+                text.GetComponent<TMPro.TextMeshPro>().text = "Killed: " + (text.GetComponent<variable>().killed + 1).ToString();
+                text.GetComponent<variable>().killed++;
+                hascount = true;
+            }
+
             if (EmeraldComponent.DeathTypeRef == EmeraldAISystem.DeathType.Ragdoll)
             {
                 Rigidbody[] RandomRagdollComponent = transform.GetComponentsInChildren<Rigidbody>();
