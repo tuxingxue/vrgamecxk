@@ -855,12 +855,16 @@ namespace EmeraldAI.Utility
             }
         }
 
+        public GameObject text;
         /// <summary>
         /// Initialize an AI's death
         /// </summary>
         public void InitializeAIDeath ()
         {
             //Get a random ragdoll component to apply force to
+            //GameObject text = GameObject.Find("Player/SteamVRObjects/VRCamera/Text");
+            text.GetComponent<TMPro.TextMeshPro>().text = "Killed: " + (text.GetComponent<variable>().killed + 1).ToString();
+            text.GetComponent<variable>().killed++;
             if (EmeraldComponent.DeathTypeRef == EmeraldAISystem.DeathType.Ragdoll)
             {
                 Rigidbody[] RandomRagdollComponent = transform.GetComponentsInChildren<Rigidbody>();
@@ -900,6 +904,7 @@ namespace EmeraldAI.Utility
             }
             else if (EmeraldComponent.DeathTypeRef == EmeraldAISystem.DeathType.Animation)
             {
+
                 while (CurrentForce <= EmeraldComponent.SecondsToDisable)
                 {
                     CurrentForce += Time.deltaTime;                   
