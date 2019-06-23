@@ -250,7 +250,8 @@ namespace EmeraldAI
             {
                 EmeraldComponent.EmeraldDetectionComponent.enabled = false;
                 EmeraldComponent.EmeraldEventsManagerComponent.enabled = false;
-                EmeraldComponent.AIBoxCollider.enabled = false;
+                //EmeraldComponent.AIBoxCollider.enabled = false;
+                StartCoroutine(Collfalse());
                 EmeraldComponent.AICollider.enabled = false;
                 EmeraldComponent.AIAnimator.ResetTrigger("Hit");
                 EmeraldComponent.AIAnimator.ResetTrigger("Attack");
@@ -266,7 +267,11 @@ namespace EmeraldAI
                 }
             }
         }
-
+        private IEnumerator Collfalse()
+        {
+            yield return new WaitForSeconds(2f);
+            EmeraldComponent.AIBoxCollider.enabled = false;
+        }
         /// <summary>
         /// Controls our AI's fleeing logic and functionality
         /// </summary>

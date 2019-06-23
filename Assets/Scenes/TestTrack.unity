@@ -1345,7 +1345,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275540635}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 0.1, z: 1}
+  m_LocalPosition: {x: 0.01, y: -0.13, z: 1.203}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1705615836}
@@ -13823,7 +13823,7 @@ PrefabInstance:
     - target: {fileID: 2770674215161079070, guid: 84f2bc6cb4b18a346a359b549a7d4251,
         type: 3}
       propertyPath: TabNumber
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2770674215161079070, guid: 84f2bc6cb4b18a346a359b549a7d4251,
         type: 3}
@@ -13834,6 +13834,51 @@ PrefabInstance:
         type: 3}
       propertyPath: DetectionRadius
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770674215161079070, guid: 84f2bc6cb4b18a346a359b549a7d4251,
+        type: 3}
+      propertyPath: AnimationTabNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770674215161079070, guid: 84f2bc6cb4b18a346a359b549a7d4251,
+        type: 3}
+      propertyPath: TemperamentTabNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770674215161079070, guid: 84f2bc6cb4b18a346a359b549a7d4251,
+        type: 3}
+      propertyPath: EventTabNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770674215161079070, guid: 84f2bc6cb4b18a346a359b549a7d4251,
+        type: 3}
+      propertyPath: MovementTabNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770674215161079070, guid: 84f2bc6cb4b18a346a359b549a7d4251,
+        type: 3}
+      propertyPath: CombatTabNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770674215161079070, guid: 84f2bc6cb4b18a346a359b549a7d4251,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.x
+      value: -3.618103
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770674215161079070, guid: 84f2bc6cb4b18a346a359b549a7d4251,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.y
+      value: -5.4094076
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770674215161079070, guid: 84f2bc6cb4b18a346a359b549a7d4251,
+        type: 3}
+      propertyPath: m_ProjectileCollisionPoint.z
+      value: 6.4224625
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770674215161079070, guid: 84f2bc6cb4b18a346a359b549a7d4251,
+        type: 3}
+      propertyPath: DeathTypeRef
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2770674215161079067, guid: 84f2bc6cb4b18a346a359b549a7d4251,
         type: 3}
@@ -33859,7 +33904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 853554035d67ed8458014b199fd7d9d9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 853554035d67ed8458014b199fd7d9d9, type: 3}
       propertyPath: m_Name
@@ -33925,6 +33970,10 @@ PrefabInstance:
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 853554035d67ed8458014b199fd7d9d9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400014, guid: 853554035d67ed8458014b199fd7d9d9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -109.46355
@@ -33983,7 +34032,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 853554035d67ed8458014b199fd7d9d9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1
+      value: 1.123
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 853554035d67ed8458014b199fd7d9d9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.642
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: 853554035d67ed8458014b199fd7d9d9, type: 3}
       propertyPath: m_LocalPosition.y
