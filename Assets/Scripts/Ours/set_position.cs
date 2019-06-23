@@ -26,6 +26,9 @@ public class set_position : MonoBehaviour
     public SteamVR_Input_Sources handType; // 1
     public SteamVR_Action_Boolean teleportAction; // 2
     public SteamVR_Action_Boolean grabAction; // 3
+
+    public GameObject[] audiosObj;
+    float lastplay;
     private int changebreak = 0;
     public bool GetTeleportDown() // 1
     {
@@ -77,7 +80,6 @@ public class set_position : MonoBehaviour
                     ggleft.SetActive(true);
                     ggright.SetActive(true);
                     print("Get off the motor");
-
                 }
                 else
                 {
@@ -88,6 +90,7 @@ public class set_position : MonoBehaviour
                     ggleft.SetActive(false);
                     ggright.SetActive(false);
                     print("Get on the motor");
+                    gameObject.GetComponent<AudioSource>().Play();
                 }
             }
             else
@@ -103,6 +106,34 @@ public class set_position : MonoBehaviour
             Vector3 vtmp1 = pesudocamera.position - can.position;
             transform.Translate(vtmp1, Space.World);
             speed = vtmp1.magnitude/Time.deltaTime;
+            float now = Time.fixedTime;
+            int cur = 0;
+            for (int i = 0; i < 6; i++)
+                if (true)
+                {
+                    if (audiosObj[i].GetComponent<AudioSource>().isPlaying == true)
+                    {
+                        cur = i;
+                    }
+                }
+            if (speed>1f)
+            {
+                int x = (int)(speed / 3f) > 5 ? 5 : (int)(speed / 3f);
+                
+                if (x!=cur && now - lastplay > 0.5f)
+                {
+                    audiosObj[cur].GetComponent<AudioSource>().Stop();
+                    audiosObj[x].GetComponent<AudioSource>().Play();
+                    lastplay = now;
+                }
+            }
+            else
+            {
+                if(now - lastplay> 0.3f)
+                {
+                    audiosObj[cur].GetComponent<AudioSource>().Stop();
+                }
+            }
             if(speed>3f)
             {
                 hand1.TriggerHapticPulse(0.01f, 100f, speed * 0.0015f);

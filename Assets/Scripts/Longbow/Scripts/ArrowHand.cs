@@ -352,6 +352,7 @@ namespace Valve.VR.InteractionSystem
         int gay=0;
         void createhole()
         {
+            gameObject.GetComponent<AudioSource>().Play();
             RaycastHit hit;
             Vector3 posh = transform.GetChild(0).position;
 
