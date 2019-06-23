@@ -94,6 +94,7 @@ public class CollideTigger : MonoBehaviour
                 //collision.collider.gameObject.SetActive(false);
                 //collision.collider.gameObject.GetComponent<NewBahaviorScript>();
             }
+            gameObject.SetActive(false);
             /*
             if (canStick)
             {

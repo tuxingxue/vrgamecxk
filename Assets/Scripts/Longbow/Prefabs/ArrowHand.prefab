@@ -268,7 +268,7 @@ MonoBehaviour:
   BtnTrigger: {fileID: 7316564560126654322}
   BtnTrigger2: {fileID: 598221282847572561}
   BtnTrigger3: {fileID: 7248851867752494696}
-  maximummove: 100
+  maximummove: 1000
   teleportmask:
     serializedVersion: 2
     m_Bits: 7968
@@ -1871,7 +1871,7 @@ Transform:
   m_GameObject: {fileID: 1891047481963952447}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0.4314257, y: -0.1190784, z: 2.1158042}
-  m_LocalScale: {x: 0.5, y: 1, z: 0.5000005}
+  m_LocalScale: {x: 0.3, y: 1, z: 0.3}
   m_Children: []
   m_Father: {fileID: 2260832885251777563}
   m_RootOrder: 0
@@ -2084,7 +2084,7 @@ Transform:
   m_GameObject: {fileID: 5884166746550219193}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.4314257, y: -0.055078506, z: 2.1158042}
-  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_LocalScale: {x: 0.3, y: 1, z: 0.3}
   m_Children: []
   m_Father: {fileID: 2260832885251777563}
   m_RootOrder: 1
