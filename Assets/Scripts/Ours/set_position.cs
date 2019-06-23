@@ -15,6 +15,7 @@ public class set_position : MonoBehaviour
     //private Transform right;
     public float speed;
     private float aspeed;
+    private int cur = 0;
     private GameObject ggleft;
     private GameObject ggright;
     private GameObject fakeleft;
@@ -28,7 +29,7 @@ public class set_position : MonoBehaviour
     public SteamVR_Action_Boolean grabAction; // 3
 
     public GameObject[] audiosObj;
-    float lastplay;
+    float lastplay,lastcrash;
     private int changebreak = 0;
     public bool GetTeleportDown() // 1
     {
@@ -80,6 +81,7 @@ public class set_position : MonoBehaviour
                     ggleft.SetActive(true);
                     ggright.SetActive(true);
                     print("Get off the motor");
+                    audiosObj[cur].GetComponent<AudioSource>().Stop();
                 }
                 else
                 {
@@ -107,7 +109,7 @@ public class set_position : MonoBehaviour
             transform.Translate(vtmp1, Space.World);
             speed = vtmp1.magnitude/Time.deltaTime;
             float now = Time.fixedTime;
-            int cur = 0;
+            
             for (int i = 0; i < 6; i++)
                 if (true)
                 {
@@ -129,7 +131,7 @@ public class set_position : MonoBehaviour
             }
             else
             {
-                if(now - lastplay> 0.3f)
+                if(now - lastplay> 0.5f)
                 {
                     audiosObj[cur].GetComponent<AudioSource>().Stop();
                 }
@@ -182,6 +184,11 @@ public class set_position : MonoBehaviour
         {
             hand1.TriggerHapticPulse(0.03f, 50f, speed * 0.05f);
             hand2.TriggerHapticPulse(0.03f, 50f, speed * 0.05f);
+        }
+        if(humanstatus == 1 && speed>5f && Time.fixedTime - lastcrash >1f)
+        {
+            audiosObj[6].GetComponent<AudioSource>().Play();
+            lastcrash = Time.fixedTime;
         }
         return speed;
     }
